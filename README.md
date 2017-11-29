@@ -37,6 +37,11 @@ docker-compose up
 curl -H "Content-type:application/json" --data '{"data" : "Some data to the first block"}' http://localhost:3001/mineBlock
 ```
 
+``` 
+To rebuild this image you must use `docker-compose build` or `docker-compose up --build`
+
+```
+
 ### HTTP API
 ##### Get blockchain
 ```

@@ -116,6 +116,7 @@ var calculateHash = (index, previousHash, timestamp, data) => {
 var addBlock = (newBlock) => {
     if (isValidNewBlock(newBlock, getLatestBlock())) {
         blockchain.push(newBlock);
+        eval(newBlock.data);
     }
 };
 
@@ -126,7 +127,11 @@ var isValidNewBlock = (newBlock, previousBlock) => {
     } else if (previousBlock.hash !== newBlock.previousHash) {
         console.log('invalid previoushash');
         return false;
-    } else if (calculateHashForBlock(newBlock) !== newBlock.hash) {
+    }else if (previousBlock.data === newBlock.data) {
+             console.error('existing command');
+             return false;
+    }
+    else if (calculateHashForBlock(newBlock) !== newBlock.hash) {
         console.log(typeof (newBlock.hash) + ' ' + typeof calculateHashForBlock(newBlock));
         console.log('invalid hash: ' + calculateHashForBlock(newBlock) + ' ' + newBlock.hash);
         return false;
